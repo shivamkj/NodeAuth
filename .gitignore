@@ -1,0 +1,11 @@
+
+
+# Folders
+examples
+dist
+node_modules
+.exclude
+
+# Sensetive files
+.env
+

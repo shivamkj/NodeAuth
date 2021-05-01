@@ -1,0 +1,52 @@
+@baseUrl = http://localhost:3000
+@route = /ubs/auth/v1
+@email = shivamkj360@gmail.com
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTk4Nzc5ODMsImV4cCI6MTYxOTg4MTU4MywiYXVkIjoic2hpdmFta2ozNjBAZ21haWwuY29tIiwiaXNzIjoic2hpdmFta2ouY29tIn0.ZEfvhdCJB50-7k_nP13ihKOUbJKyx1a0YgUEsnT4uxM
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTk2NzYwMTMsImV4cCI6MTY1MTIzMzYxMywiYXVkIjoic2hpdmFta2ozNjBAZ21haWwuY29tIiwiaXNzIjoic2hpdmFta2ouY29tIn0.FyfN2UZNQJ97oT8czL4hfA0rBra5R0sSVTqy8J8WKoo
+@otpHash =99cec0d839b797aa1dea9018ebb7702decd8525cceec41d82ad01d27cd7cff92.1619676251588
+@otp = 509134
+@email = shivamkj360@gmail.com
+
+###
+POST {{baseUrl}}{{route}}/otp/send
+Content-Type: application/json
+
+{
+    "email": "{{email}}"
+}
+
+###
+POST {{baseUrl}}{{route}}/otp/verify 
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "otp": {{otp}},
+    "hash": "{{otpHash}}"
+}
+
+###
+GET {{baseUrl}}{{route}}/user/1
+Authorization: {{accessToken}}
+
+###
+GET {{baseUrl}}{{route}}/user/details/3
+Authorization: {{accessToken}}
+
+###
+POST {{baseUrl}}{{route}}/user/details/1
+Content-Type: application/json
+Authorization: {{accessToken}}
+
+{
+    "name": "Shivam Kumar Jha"
+}
+
+###
+POST {{baseUrl}}{{route}}/refresh-token
+Authorization: {{accessToken}}
+Content-Type: application/json
+
+{
+    "refreshToken": "{{refreshToken}}"
+}
